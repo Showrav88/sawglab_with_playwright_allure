@@ -41,4 +41,14 @@ export default class AddToCart {
   async clickLogoutButton() {
     await this.locate.logoutButton.click();
   }
+
+  async selectFilterOption() {
+    await this.locate.filterDropdown.click();
+    await this.page.waitForTimeout(3000);
+  }
+  async selectFilterOptionZA(option) {
+    await this.locate.filterDropdown.selectOption(option);
+   
+  }
+
 }

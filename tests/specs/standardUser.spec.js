@@ -25,31 +25,31 @@ test.describe('Standard User Functionality', () => {
     await addToCart.clickCloseMenu();
     console.log('User is able to close the menu');
 
-    // 1. Collect product names, prices, and buttons
+    //  Collect product names, prices, and buttons
     const names = await page.$$('.inventory_item_name');
     const prices = await page.$$('.inventory_item_price');
     const buttons = await page.$$('button.btn_inventory');
 
-    // 2. Generate 3 random unique indexes
+    //  Generate 3 random unique indexes
     const indexes = Array.from({ length: buttons.length }, (_, i) => i);
     indexes.sort(() => Math.random() - 0.5);
     const randomIndexes = indexes.slice(0, 3);
 
-    //3. Store selected product data
+    // Store selected product data
     let selectedProducts = [];
 
-    // 4. Add random products to cart + store name + price
+    //  Add random products to cart + store name + price
     for (const idx of randomIndexes) {
-      const productName = await names[idx].innerText();
+      const productName = await names[idx].innerText(); // Get product name
       const productPriceText = await prices[idx].innerText(); // e.g., "$29.99"
-      const productPrice = parseFloat(productPriceText.replace('$', ''));
+      const productPrice = parseFloat(productPriceText.replace('$', '')); // Convert to number
 
-      console.log(`Adding to cart: ${productName} | Price: ${productPrice}`);
-      await buttons[idx].click();
+      console.log(`Product name: ${productName} | Price: ${productPrice}`); // Log name and price
+      await buttons[idx].click(); // Click the add to cart button
 
-      selectedProducts.push({ name: productName, price: productPrice });
+      selectedProducts.push({ name: productName, price: productPrice }); //storing name and price
     }
-    // 5. ✅ Verify cart badge shows 3
+    // Verify cart badge shows 3
     const cartCount = await page.locator('.shopping_cart_badge').innerText();
     expect(Number(cartCount)).toBe(3);
     console.log('3 random items added to the cart successfully');
@@ -66,6 +66,7 @@ test.describe('Standard User Functionality', () => {
     await addToCart.clickContinueButton();
     await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-two.html');
     console.log('User is able to navigate to the checkout overview page');
+
     // Verify selected products at checkout name
     const checkoutNames = (await page.locator('.inventory_item_name').allInnerTexts()).map((n) =>
       n.trim()
@@ -105,7 +106,7 @@ test.describe('Standard User Functionality', () => {
 
     await addToCart.clickFinishButton();
     await expect(page).toHaveURL('https://www.saucedemo.com/checkout-complete.html');
-    expect(page.locator('.complete-header')).toHaveText('THANK YOU FOR YOUR ORDER');
+    await expect(page.locator('.complete-header')).toHaveText(/Thank you for your order!/i);
     console.log('User is able to complete the purchase process successfully');
     await addToCart.clickBackHomeButton();
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
