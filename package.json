@@ -1,15 +1,23 @@
 {
   "name": "sawglab",
   "version": "1.0.0",
-  "description": "",
+  "description": "Playwright project with Prettier formatting",
   "main": "index.js",
-  "scripts": {},
+  "type": "commonjs",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npx playwright test  --project=chromium  --reporter=list",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:report": "npx playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.55.0",
-    "@types/node": "^24.5.1"
+    "@types/node": "^24.5.1",
+    "prettier": "^3.3.3"
   }
 }
