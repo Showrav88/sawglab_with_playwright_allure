@@ -1,46 +1,44 @@
-import AddToCartObjects from "../pageObjects/addToCartObjects";
+import AddToCartObjects from '../pageObjects/addToCartObjects';
 
 export default class AddToCart {
   constructor(page) {
     this.page = page;
     this.locate = new AddToCartObjects(page);
   }
-async clickHumburgerMenu() {
+  async clickHumburgerMenu() {
     await this.locate.humburgerMenu.click();
-}
-async clickResetAppState() {
+  }
+  async clickResetAppState() {
     await this.locate.resetAppState.click();
-}
-async clickCloseMenu() {
+  }
+  async clickCloseMenu() {
     await this.locate.closeMenu.click();
-}
-async clickshoppingCartButton() {
+  }
+  async clickshoppingCartButton() {
     await this.locate.shoppingCart.click();
   }
-async clickCheckoutButton() {
+  async clickCheckoutButton() {
     await this.locate.checkoutButton.click();
   }
-async enterFirstnameField(firstname) {
+  async enterFirstnameField(firstname) {
     await this.locate.firstnameField.fill(firstname);
   }
-async enterLastnameField(lastname) {
+  async enterLastnameField(lastname) {
     await this.locate.lastnameField.fill(lastname);
   }
-async enterZipCodeField(zipcode) {
+  async enterZipCodeField(zipcode) {
     await this.locate.zipCodeField.fill(zipcode);
   }
-async clickContinueButton() {
+  async clickContinueButton() {
     await this.locate.continueButton.click();
   }
-async clickFinishButton() {
+  async clickFinishButton() {
     await this.locate.finishButton.click();
   }
-async clickBackHomeButton() {
+  async clickBackHomeButton() {
     await this.locate.backHomeButton.click();
   }
-async clickLogoutButton() {
+  async clickLogoutButton() {
     await this.locate.logoutButton.click();
   }
-
-
 }

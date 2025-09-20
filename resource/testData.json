@@ -1,10 +1,5 @@
 {
-  "Username": [
-    "locked_user",
-    "standard_user",
-    "problem_user",
-    "performance_glitch_user"
-  ],
+  "Username": ["locked_user", "standard_user", "problem_user", "performance_glitch_user"],
   "password": "secret_sauce",
 
   "firstname": "John",

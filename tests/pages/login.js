@@ -1,4 +1,4 @@
-import LogingnObject from "../pageObjects/loginObject";
+import LogingnObject from '../pageObjects/loginObject';
 
 export default class Login {
   constructor(page) {
