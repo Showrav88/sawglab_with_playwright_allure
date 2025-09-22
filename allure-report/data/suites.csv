@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","5791","Standard User should be able to log in and select an e2e journey product to purchase.","standard-user","Tue Sep 23 05:02:43 BDT 2025","passed","Tue Sep 23 05:02:48 BDT 2025","Standard User Functionality","standardUser.spec.js","",""
