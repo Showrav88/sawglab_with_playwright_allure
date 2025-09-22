@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*' # automatically use latest LTS
+          node-version: 'lts/*'
 
       # --------------------------
       # Install dependencies
@@ -32,53 +32,40 @@ jobs:
         run: npm ci
 
       # --------------------------
-      # Run all tests together (merged)
+      # Run all tests and merge results
       # --------------------------
-      - name: Run all tests (merged)
+      - name: Run all tests
         run: |
+          # Clean previous merged results
           rm -rf allure-results/all
           mkdir -p allure-results/all
+
+          # Run standard-user tests
+          rm -rf allure-results/*
           npm run test:standard
           cp -r allure-results/* allure-results/all/
+
+          # Run performance-glitch-user tests
           rm -rf allure-results/*
           npm run test:performance
           cp -r allure-results/* allure-results/all/
+
+          # Run locked-out-user tests
           rm -rf allure-results/*
           npm run test:locked
           cp -r allure-results/* allure-results/all/
 
-      - name: Generate Allure report (merged)
+      # --------------------------
+      # Generate merged Allure report
+      # --------------------------
+      - name: Generate Allure report
         run: |
           npx allure generate allure-results/all --clean -o allure-report/all
 
       # --------------------------
-      # Run individual projects
+      # Deploy Allure reports to GitHub Pages
       # --------------------------
-      - name: Run standard-user tests
-        run: |
-          rm -rf allure-results/standard
-          npm run test:standard
-          cp -r allure-results/* allure-results/standard
-          npx allure generate allure-results/standard --clean -o allure-report/standard
-
-      - name: Run performance-glitch-user tests
-        run: |
-          rm -rf allure-results/performance
-          npm run test:performance
-          cp -r allure-results/* allure-results/performance
-          npx allure generate allure-results/performance --clean -o allure-report/performance
-
-      - name: Run locked-out-user tests
-        run: |
-          rm -rf allure-results/locked
-          npm run test:locked
-          cp -r allure-results/* allure-results/locked
-          npx allure generate allure-results/locked --clean -o allure-report/locked
-
-      # --------------------------
-      # Publish all reports to GitHub Pages
-      # --------------------------
-      - name: Deploy Allure reports to GitHub Pages
+      - name: Deploy Allure reports
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
