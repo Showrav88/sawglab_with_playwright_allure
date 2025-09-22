@@ -36,31 +36,27 @@ jobs:
       # --------------------------
       - name: Run all tests
         run: |
-          # Clean previous merged results
-          rm -rf allure-results/all
+          # Create merged results folder
           mkdir -p allure-results/all
 
           # Run standard-user tests
-          rm -rf allure-results/*
           npm run test:standard
-          cp -r allure-results/* allure-results/all/
+          cp -r allure-results/* allure-results/all/ || echo "No results from standard tests"
 
           # Run performance-glitch-user tests
-          rm -rf allure-results/*
           npm run test:performance
-          cp -r allure-results/* allure-results/all/
+          cp -r allure-results/* allure-results/all/ || echo "No results from performance tests"
 
           # Run locked-out-user tests
-          rm -rf allure-results/*
           npm run test:locked
-          cp -r allure-results/* allure-results/all/
+          cp -r allure-results/* allure-results/all/ || echo "No results from locked tests"
 
       # --------------------------
       # Generate merged Allure report
       # --------------------------
       - name: Generate Allure report
         run: |
-          npx allure generate allure-results/all --clean -o allure-report/all
+          npx allure generate allure-results/all --clean -o allure-report
 
       # --------------------------
       # Deploy Allure reports to GitHub Pages
