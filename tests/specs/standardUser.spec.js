@@ -9,7 +9,7 @@ test.describe('Standard User Functionality', () => {
     addToCart = new AddToCart(page);
     await page.goto('https://www.saucedemo.com/');
   });
-  test('User should be able to log in and select an e2e journey product to purchase.', async ({
+  test('Standard User should be able to log in and select an e2e journey product to purchase.', async ({
     page,
   }) => {
     await login.clickUsernameField();

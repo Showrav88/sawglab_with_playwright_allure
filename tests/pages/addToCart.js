@@ -48,7 +48,5 @@ export default class AddToCart {
   }
   async selectFilterOptionZA(option) {
     await this.locate.filterDropdown.selectOption(option);
-   
   }
-
 }

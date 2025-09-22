@@ -5,6 +5,6 @@
   "firstname": "John",
   "lastname": "Doe",
   "zipcode": "12345",
-  
+
   "filterOption": ["az", "za", "lohi", "hilo"]
 }

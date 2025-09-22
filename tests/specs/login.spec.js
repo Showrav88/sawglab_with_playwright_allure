@@ -9,7 +9,7 @@ test.describe('Login Functionality', () => {
     await page.goto('https://www.saucedemo.com/');
   });
 
-  test('User should be able to see login error massage when using locked_out_user', async ({
+  test('Locked User should be able to see login error massage when using locked_out_user', async ({
     page,
   }) => {
     await login.clickUsernameField();
