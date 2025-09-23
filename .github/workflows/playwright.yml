@@ -32,31 +32,40 @@ jobs:
         run: npm ci
 
       # --------------------------
+      # Clean previous results
+      # --------------------------
+      - name: Clean old Allure results
+        run: npm run clean || echo "No old results to clean"
+
+      # --------------------------
       # Run all tests and merge results
       # --------------------------
       - name: Run all tests
         run: |
-          rm -rf allure-results/all
+          mkdir -p allure-results
           mkdir -p allure-results/all
 
+          echo "Running standard-user tests..."
           npm run test:standard
-          cp -r allure-results/* allure-results/all/ || true
+          if [ -d "allure-results" ]; then cp -r allure-results/* allure-results/all/; fi
 
+          echo "Running performance-glitch-user tests..."
           npm run test:performance
-          cp -r allure-results/* allure-results/all/ || true
+          if [ -d "allure-results" ]; then cp -r allure-results/* allure-results/all/; fi
 
+          echo "Running locked-out-user tests..."
           npm run test:locked
-          cp -r allure-results/* allure-results/all/ || true
+          if [ -d "allure-results" ]; then cp -r allure-results/* allure-results/all/; fi
 
       # --------------------------
-      # Verify merged results
+      # Verify merged Allure results
       # --------------------------
-      - name: Verify Allure results
+      - name: Verify merged Allure results
         run: |
           echo "Listing merged Allure results:"
-          ls -R allure-results/all
-          if [ ! "$(ls -A allure-results/all)" ]; then
-            echo "ERROR: No Allure results found!"
+          ls -R allure-results/all || echo "No merged results found"
+          if [ ! "$(ls -A allure-results/all 2>/dev/null)" ]; then
+            echo "ERROR: No Allure results found. Aborting workflow!"
             exit 1
           fi
 
@@ -64,16 +73,11 @@ jobs:
       # Generate Allure report
       # --------------------------
       - name: Generate Allure report
-        run: npx allure generate allure-results/all --clean -o allure-report
-
-      # --------------------------
-      # Verify generated report
-      # --------------------------
-      - name: Verify generated report
         run: |
+          npx allure generate allure-results/all --clean -o allure-report
           echo "Listing generated Allure report:"
-          ls -R allure-report
-          if [ ! "$(ls -A allure-report)" ]; then
+          ls -R allure-report || echo "No report generated"
+          if [ ! "$(ls -A allure-report 2>/dev/null)" ]; then
             echo "ERROR: Allure report generation failed!"
             exit 1
           fi
