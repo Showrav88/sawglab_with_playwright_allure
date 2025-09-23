@@ -16,7 +16,7 @@
     "test:performance:run": "npx playwright test --project=performance-glitch-user",
     "test:locked": "npm-run-all clean test:locked:run",
     "test:locked:run": "npx playwright test --project=locked-out-user",
-    "allure:report": "npx allure generate \"./allure-results\" --clean -o \"./allure-report\" && npx allure open \"./allure-report\"",
+    "allure:report": "npx allure generate \"./allure-results\" --clean -o \"./allure-report\"" ,
     "test:all:report": "npm-run-all test allure:report",
     "test:standard:report": "npm-run-all test:standard allure:report",
     "test:performance:report": "npm-run-all test:performance allure:report",
