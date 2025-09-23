@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout code
+      # Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -25,11 +25,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Run all tests sequentially
+      # Clean old results
+      - name: Clean old Allure results
+        run: npm run clean || echo "No old results to clean"
+
+      # Run all tests sequentially and generate Allure report
       - name: Run all Playwright tests
         run: npm run test:all:report
 
-      # Deploy Allure report to GitHub Pages
+      # Deploy report to GitHub Pages
       - name: Deploy Allure report
         uses: peaceiris/actions-gh-pages@v4
         with:
