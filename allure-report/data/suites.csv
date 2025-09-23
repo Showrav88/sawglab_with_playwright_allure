@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","6045","Standard User should be able to log in and select an e2e journey product to purchase.","standard-user","Tue Sep 23 05:23:53 BDT 2025","passed","Tue Sep 23 05:23:59 BDT 2025","Standard User Functionality","standardUser.spec.js","",""
-"","3357","Locked User should be able to see login error massage when using locked_out_user","locked-out-user","Tue Sep 23 05:23:53 BDT 2025","passed","Tue Sep 23 05:23:56 BDT 2025","Login Functionality","login.spec.js","",""
-"","24278","Performance Glitch User should be able to log in and select an e2e journey product to purchase.","performance-glitch-user","Tue Sep 23 05:23:53 BDT 2025","passed","Tue Sep 23 05:24:17 BDT 2025","Performance Glitch User Functionality","performanceGlitchUser.spec.js","",""
