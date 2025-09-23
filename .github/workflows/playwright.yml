@@ -32,16 +32,11 @@ jobs:
         run: npm ci
 
       # --------------------------
-      # Clean previous results
-      # --------------------------
-      - name: Clean old Allure results
-        run: npm run clean || echo "No old results to clean"
-
-      # --------------------------
       # Run all tests and merge results
       # --------------------------
       - name: Run all tests
         run: |
+          rm -rf allure-results/all
           mkdir -p allure-results/all
 
           npm run test:standard
@@ -54,14 +49,14 @@ jobs:
           cp -r allure-results/* allure-results/all/ || true
 
       # --------------------------
-      # Verify Allure results
+      # Verify merged results
       # --------------------------
-      - name: Verify merged Allure results
+      - name: Verify Allure results
         run: |
           echo "Listing merged Allure results:"
           ls -R allure-results/all
           if [ ! "$(ls -A allure-results/all)" ]; then
-            echo "ERROR: No Allure results found. Aborting workflow!"
+            echo "ERROR: No Allure results found!"
             exit 1
           fi
 
@@ -69,8 +64,13 @@ jobs:
       # Generate Allure report
       # --------------------------
       - name: Generate Allure report
+        run: npx allure generate allure-results/all --clean -o allure-report
+
+      # --------------------------
+      # Verify generated report
+      # --------------------------
+      - name: Verify generated report
         run: |
-          npx allure generate allure-results/all --clean -o allure-report
           echo "Listing generated Allure report:"
           ls -R allure-report
           if [ ! "$(ls -A allure-report)" ]; then
