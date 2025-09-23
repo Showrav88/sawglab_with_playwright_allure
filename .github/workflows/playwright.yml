@@ -11,81 +11,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # --------------------------
-      # Checkout repository
-      # --------------------------
+      # Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # --------------------------
       # Setup Node.js
-      # --------------------------
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
 
-      # --------------------------
       # Install dependencies
-      # --------------------------
       - name: Install dependencies
         run: npm ci
 
-      # --------------------------
-      # Clean previous results
-      # --------------------------
-      - name: Clean old Allure results
-        run: npm run clean || echo "No old results to clean"
+      # Run all tests sequentially
+      - name: Run all Playwright tests
+        run: npm run test:all:report
 
-      # --------------------------
-      # Run all tests and merge results
-      # --------------------------
-      - name: Run all tests
-        run: |
-          mkdir -p allure-results
-          mkdir -p allure-results/all
-
-          echo "Running standard-user tests..."
-          npm run test:standard
-          if [ -d "allure-results" ]; then cp -r allure-results/* allure-results/all/; fi
-
-          echo "Running performance-glitch-user tests..."
-          npm run test:performance
-          if [ -d "allure-results" ]; then cp -r allure-results/* allure-results/all/; fi
-
-          echo "Running locked-out-user tests..."
-          npm run test:locked
-          if [ -d "allure-results" ]; then cp -r allure-results/* allure-results/all/; fi
-
-      # --------------------------
-      # Verify merged Allure results
-      # --------------------------
-      - name: Verify merged Allure results
-        run: |
-          echo "Listing merged Allure results:"
-          ls -R allure-results/all || echo "No merged results found"
-          if [ ! "$(ls -A allure-results/all 2>/dev/null)" ]; then
-            echo "ERROR: No Allure results found. Aborting workflow!"
-            exit 1
-          fi
-
-      # --------------------------
-      # Generate Allure report
-      # --------------------------
-      - name: Generate Allure report
-        run: |
-          npx allure generate allure-results/all --clean -o allure-report
-          echo "Listing generated Allure report:"
-          ls -R allure-report || echo "No report generated"
-          if [ ! "$(ls -A allure-report 2>/dev/null)" ]; then
-            echo "ERROR: Allure report generation failed!"
-            exit 1
-          fi
-
-      # --------------------------
-      # Deploy Allure reports to GitHub Pages
-      # --------------------------
-      - name: Deploy Allure reports
+      # Deploy Allure report to GitHub Pages
+      - name: Deploy Allure report
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
