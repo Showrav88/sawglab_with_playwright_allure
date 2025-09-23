@@ -1,0 +1,28 @@
+User is able to login with valid username and password
+User is able to reset app state
+User is able to close the menu
+Product name: Sauce Labs Fleece Jacket | Price: 49.99
+Product name: Sauce Labs Bolt T-Shirt | Price: 15.99
+Product name: Test.allTheThings() T-Shirt (Red) | Price: 15.99
+3 random items added to the cart successfully
+User is able to navigate to the cart page
+User is able to navigate to the checkout page
+User is able to navigate to the checkout overview page
+Products at checkout: [
+  'Sauce Labs Fleece Jacket',
+  'Sauce Labs Bolt T-Shirt',
+  'Test.allTheThings() T-Shirt (Red)'
+]
+Selected products: [
+  'Sauce Labs Fleece Jacket',
+  'Sauce Labs Bolt T-Shirt',
+  'Test.allTheThings() T-Shirt (Red)'
+]
+Expected Item Total: 81.97
+Displayed Item Total: 81.97
+Expected Final Total: 88.53
+Displayed Final Total: 88.53
+User is able to complete the purchase process successfully
+User is able to navigate back to the home page
+User is able to reset app state
+User is able to logout successfully
