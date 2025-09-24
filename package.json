@@ -20,7 +20,8 @@
     "test:all:report": "npm-run-all test allure:report",
     "test:standard:report": "npm-run-all test:standard allure:report",
     "test:performance:report": "npm-run-all test:performance allure:report",
-    "test:locked:report": "npm-run-all test:locked allure:report"
+    "test:locked:report": "npm-run-all test:locked allure:report",
+    "allure:open": "npx allure open ./allure-report"
   },
   "keywords": [],
   "author": "Showrav karmakar",
