@@ -35,6 +35,9 @@ Clone the repo:
 ```bash
 git clone https://github.com/Showrav88/sawglab_with_playwright_allure.git
 cd sawglab_with_playwright_allure
+```bash
+npm install
+
 
 
 
