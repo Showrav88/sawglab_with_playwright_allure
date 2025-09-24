@@ -30,19 +30,19 @@ It automates test cases against the [SauceDemo](https://www.saucedemo.com/) samp
 ## ⚙️ Installation
 
 Clone the repo:
-# Clone the repo
+## Clone the repo
 ```bash
 git clone https://github.com/Showrav88/sawglab_with_playwright_allure.git
 ```
-# Go inside project folder
+## Go inside project folder
 ```bash
 cd sawglab_with_playwright_allure
 ```
-# Install dependencies
+## Install dependencies
 ```bash
 npm install
 ```
-# Install Playwright browsers
+## Install Playwright browsers
 ```bash
 npx playwright install --with-deps
 ```
