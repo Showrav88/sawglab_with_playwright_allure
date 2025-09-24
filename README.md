@@ -1,4 +1,4 @@
-S# 🧪 Playwright + Allure Report Automation
+# 🧪 Playwright + Allure Report Automation
 
 This project is an **end-to-end test automation framework** built with [Playwright] and [Allure Reports](https://showrav88.github.io/sawglab_with_playwright_allure/).  
 
@@ -46,35 +46,35 @@ npm install
 ```bash
 npx playwright install --with-deps
 ```
-### 📜 NPM Scripts
-# 🔹 Run all Tests + Generate reports
+# 📜 NPM Scripts
+## 🔹 Run all Tests + Generate reports
 ```bash
 npm run test:all:report
 ```
-# Open the Allure report
+## Open the Allure report
 ```bash
 npm run allure:open
 ```
-# Run only Standard User tests  + Generate reports 
+## Run only Standard User tests  + Generate reports 
 ```bash
 npm run test:standard:report
 npm run allure:open
 ```
-# Run only Performance Glitch User tests  + Generate reports 
+## Run only Performance Glitch User tests  + Generate reports 
 ```bash
 npm run test:performance:report
 npm run allure:open
 ```
-# Run only Locked Out User tests + Generate reports 
+## Run only Locked Out User tests + Generate reports 
 ```bash
 npm run test:locked:report
 npm run allure:open
 ```
-### 📊 Reports
+# 📊 Reports
 
 Allure Report (GitHub Pages): [Visit my project](https://showrav88.github.io/sawglab_with_playwright_allure/)
 
-### 🔄 Continuous Integration (GitHub Actions)
+# 🔄 Continuous Integration (GitHub Actions)
 
 This project includes a GitHub Actions workflow:
 
@@ -84,9 +84,9 @@ Generates Allure report
 
 Publishes it automatically to GitHub Pages (branch: gh-pages)
 
-## 🛠 Dependencies
+# 🛠 Dependencies
 
-# Main dependencies:
+## Main dependencies:
 
 Playwright
 
@@ -100,13 +100,13 @@ Install them automatically with:
 ```bash
 npm install
 ```
-## 📌 Notes
+# 📌 Notes
 
 . Make sure Java is installed (required for Allure CLI).
 
 . GitHub Pages must be enabled on your repo → branch: gh-pages.
 
-### 🎯 Summary
+# 🎯 Summary
 
 This framework is designed for:
 
