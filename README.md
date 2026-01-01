@@ -53,7 +53,10 @@ npm run test:all:report
 ```
 ## Open the Allure report
 ```bash
+
+npm run allure:report
 npm run allure:open
+
 ```
 ## Run only Standard User tests  + Generate reports 
 ```bash
