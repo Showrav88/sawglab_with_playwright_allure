@@ -14,8 +14,9 @@ export default defineConfig({
     ['html', { open: 'never' }], // playwright html reporter
   ],
   use: {
+    headless: true,
     trace: 'on-first-retry',
-    channel: 'chrome', // use installed Google Chrome
+    channel: 'chromium', // use installed Google Chrome
     ...devices['Desktop Chrome'], // Always Chrome only
   },
   //chrome brower specific test suites

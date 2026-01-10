@@ -1,0 +1,13 @@
+User is able to login with valid username and password
+User is able to reset app state
+User is able to close the menu
+User is able to filter products from Z to A
+Product name: Test.allTheThings() T-Shirt (Red) | Price: 15.99
+1 item added to the cart successfully
+User is able to navigate to the cart page
+User is able to navigate to the checkout step two page
+Selected product is displayed in checkout step two page
+User is able to complete the purchase process successfully
+User is able to navigate back to home page
+User is able to reset app state
+User is able to logout successfully

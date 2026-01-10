@@ -1,0 +1,7 @@
+services:
+  playwright-tests:
+    build: .
+    volumes:
+      # This links your project folders so reports save to your REAL computer
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
